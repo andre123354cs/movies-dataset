@@ -90,13 +90,7 @@ with tab1:
             st.success("Novedad guardada correctamente")
 
 with tab2:
-    # Selector de fechas
-    fecha_inicio = st.date_input("Fecha de inicio")
-    fecha_fin = st.date_input("Fecha de fin")
-
-    # Botón para mostrar los datos
-    if st.button("Mostrar consolidado"):
-        mostrar_datos(fecha_inicio, fecha_fin)
+    
         
 crear_base_de_datos()
         
