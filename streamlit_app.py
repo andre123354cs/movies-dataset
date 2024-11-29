@@ -70,7 +70,7 @@ def main():
     <h1 style='text-align: left; color: #008f4c; font-size: 24px;'></h1>
     """, unsafe_allow_html=True)
     
-tab1, tab2 = st.tabs(["Registro de Novedades 📂", "Funcionarios 👔"])
+tab1, tab2, tab3 = st.tabs(["Registro de Novedades 📂", "Funcionarios 👔","Consolidado 📊"])
 
 with tab1:
 
@@ -89,10 +89,6 @@ with tab1:
 
 
 with tab2:
-    
-
-    
-    # ... (resto del código original)
     
     def mostrar_datos():
         conn = sqlite3.connect('novedades.db')
@@ -124,6 +120,46 @@ with tab2:
             title='Novedades Del Funcionario'
         )
         st.altair_chart(chart, use_container_width=True)
+
+# ... (resto del código)
+    mostrar_datos()
+
+crear_base_de_datos()
+
+
+with tab3:
+    import pandas as pd
+import altair as alt
+
+def filtrar_y_visualizar(df, fecha_inicio, fecha_fin):
+  """
+  Filtra un DataFrame de novedades por un rango de fechas y genera una tabla y un gráfico.
+
+  Args:
+    df: DataFrame con los datos de las novedades.
+    fecha_inicio: Fecha de inicio del período.
+    fecha_fin: Fecha final del período.
+  """
+
+  # Filtrar por fechas
+  df_filtrado = df[(df['fecha'] >= fecha_inicio) & (df['fecha'] <= fecha_fin)]
+
+  # Mostrar tabla con los resultados
+  st.dataframe(df_filtrado)
+
+  # Contar las novedades por funcionario y mostrar en una tabla
+  conteo_novedades = df_filtrado.groupby('nombre_funcionario').size().reset_index(name='Total_Novedades')
+  st.dataframe(conteo_novedades)
+
+  # Crear gráfico de barras
+  chart = alt.Chart(df_filtrado).mark_bar().encode(
+      x='nombre_funcionario',
+      y='count()',
+      tooltip=['novedad']
+  ).properties(
+      title='Número de novedades por funcionario'
+  )
+  st.altair_chart(chart, use_container_width=True)
 
 # ... (resto del código)
     mostrar_datos()
