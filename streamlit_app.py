@@ -132,8 +132,14 @@ with tab2:
         st.altair_chart(chart, use_container_width=True)
     mostrar_datos()
 
+with tab2:
+
+    def mostrar_datos():
+        conn = sqlite3.connect('novedades.db')
+        df = pd.read_sql_query("SELECT * FROM novedades", conn)
+        conn.close()
     
-     
+        st.dataframe(df)
     
 # Ejecutar la aplicación
 if __name__ == "__main__":
