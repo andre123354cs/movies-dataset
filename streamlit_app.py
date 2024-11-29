@@ -125,8 +125,6 @@ with tab2:
     # Mostrar los datos y el gráfico
     mostrar_datos()
 
-# Crear la base de datos si no existe
-crear_base_de_datos()
 
 with tab3:
    
