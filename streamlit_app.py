@@ -1,6 +1,7 @@
 import altair as alt
 import pandas as pd
 import streamlit as st
+import sqlite3
 
 # Show the page title and description.
 st.set_page_config(page_title="Movies dataset", page_icon="🌱")
@@ -8,13 +9,16 @@ st.title("🌱 RRHH YesBpo")
 st.write("Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!")
 
 
+import streamlit as st
+import pandas as pd
 import sqlite3
+import altair as alt
 
+# Crear la base de datos si no existe
 def crear_base_de_datos():
     conn = sqlite3.connect('novedades.db')
     cursor = conn.cursor()
 
-    # Crear la tabla si no existe
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS novedades (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,11 +32,11 @@ def crear_base_de_datos():
     conn.commit()
     conn.close()
 
+# Guardar una nueva novedad
 def guardar_novedad(fecha, nombre, novedad, observacion):
     conn = sqlite3.connect('novedades.db')
     cursor = conn.cursor()
 
-    # Insertar los datos en la tabla
     cursor.execute('''
         INSERT INTO novedades (fecha, nombre_funcionario, novedad, observacion)
         VALUES (?, ?, ?, ?)
@@ -41,15 +45,46 @@ def guardar_novedad(fecha, nombre, novedad, observacion):
     conn.commit()
     conn.close()
 
+# Mostrar los datos almacenados y generar un gráfico
+def mostrar_datos():
+    conn = sqlite3.connect('novedades.db')
+    df = pd.read_sql_query("SELECT * FROM novedades", conn)
+    conn.close()
+
+    st.dataframe(df)
+
+    # Gráfico de barras por tipo de novedad
+    chart = alt.Chart(df).mark_bar().encode(
+        x='novedad',
+        y='count()'
+    ).properties(
+        title='Número de novedades por tipo'
+    )
+    st.altair_chart(chart, use_container_width=True)
+
+# Crear la interfaz de Streamlit
+def main():
+    st.title("Sistema de Registro de Novedades")
+
+    # Crear el formulario
+    with st.form("my_form"):
+        fecha = st.date_input("Fecha")
+        nombre = st.text_input("Nombre del funcionario")
+        novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Otro"])
+        observacion = st.text_area("Observación")
+
+        # Botón para enviar el formulario
+        submitted = st.form_submit_button("Guardar")
+        if submitted:
+            guardar_novedad(fecha, nombre, novedad, observacion)
+            st.success("Novedad guardada correctamente")
+
+    # Mostrar los datos y el gráfico
+    mostrar_datos()
+
 # Crear la base de datos si no existe
 crear_base_de_datos()
 
-# Ejemplo de uso:
-fecha = "2023-11-24"
-nombre = "Juan Pérez"
-novedad = "Ausencia por enfermedad"
-observacion = "Gripe"
-
-guardar_novedad(fecha, nombre, novedad, observacion)
-
-print("Novedad guardada correctamente")
+# Ejecutar la aplicación
+if __name__ == "__main__":
+    main()
