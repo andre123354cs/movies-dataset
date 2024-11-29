@@ -64,18 +64,7 @@ def mostrar_datos():
     )
     st.altair_chart(chart, use_container_width=True)
 
-def mostrar_datos(fecha_inicio, fecha_fin):
-    # ... (código original)
 
-    # Gráfico de barras por tipo de novedad y funcionario
-    chart = alt.Chart(df).mark_bar().encode(
-        x='nombre_funcionario',
-        y='count()',
-        color='novedad'
-    ).properties(
-        title='Número de novedades por funcionario y tipo'
-    )
-    st.altair_chart(chart, use_container_width=True)
     
 # Crear la interfaz de Streamlit
 def main():
