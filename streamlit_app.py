@@ -113,13 +113,15 @@ with tab2:
     
         # Mostrar los datos filtrados
         st.dataframe(df_filtrado)
-    
+        novedades_por_funcionario = df_filtrado.groupby('nombre_funcionario').size().reset_index(name='Total_Novedades')
+        st.write(f"Total de novedades para {funcionario_seleccionado}: {novedades_por_funcionario['Total_Novedades'].iloc[0]}")
+
         # Gráfico de barras por tipo de novedad para el funcionario seleccionado
         chart = alt.Chart(df_filtrado).mark_bar().encode(
             x='novedad',
             y='count()'
         ).properties(
-            title='Número de novedades por tipo para el funcionario seleccionado'
+            title='Novedades Del Funcionario'
         )
         st.altair_chart(chart, use_container_width=True)
 
