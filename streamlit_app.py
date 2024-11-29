@@ -64,6 +64,13 @@ def mostrar_datos():
     )
     st.altair_chart(chart, use_container_width=True)
     
+def mostrar_datos_fechas():
+        conn = sqlite3.connect('novedades.db')
+        df = pd.read_sql_query("SELECT * FROM novedades", conn)
+        conn.close()
+
+        st.dataframe(df)
+
 
 def main():
     st.markdown("""
