@@ -138,12 +138,15 @@ with tab3:
         conn = sqlite3.connect('novedades.db')
         Global = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
-    
+        
+        fechas_unicas = pd.to_datetime(Global['fecha'].unique())
+        meses_unicos = fechas_unicas.dt.month_name().str.upper()
+
         # Obtener los nombres de los funcionarios únicos
-        Fechas = Global['fecha'].unique()
+        #Fechas = Global['fecha'].unique()
 
         # Crear un selectbox para elegir el funcionario
-        funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
+        funcionario_seleccionado = st.multiselect("Seleccionar fechas", meses_unicos)
     
         st.dataframe(Global)
         
