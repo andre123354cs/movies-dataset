@@ -140,7 +140,6 @@ with tab3:
         conn.close()
     
         st.dataframe(df)
-    mostrar_datos(df)
     
 
 
