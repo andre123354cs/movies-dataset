@@ -8,12 +8,12 @@ import sqlite3
 import altair as alt
 
 # Show the page title and description.
-st.set_page_config(page_title="Movies dataset", page_icon="🦉")
+st.set_page_config(page_title="Movies dataset", page_icon="🌍")
 st.markdown("""
-    <h1 style='text-align: left; color: #543011; font-size: 50px;'>🦉 RRHH YesBpo</h1>
+    <h1 style='text-align: left; color: #0f6f31; font-size: 50px;'>🌍 RRHH YesBpo</h1>
     """, unsafe_allow_html=True)
 st.markdown("""
-    <h1 style='text-align: left; color: #543011; font-size: 20px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
+    <h1 style='text-align: left; color: #0f6f31; font-size: 20px;'>Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!</h1>
     """, unsafe_allow_html=True)
 
 # Crear la base de datos si no existe
@@ -67,7 +67,7 @@ def mostrar_datos():
 
 def main():
     st.markdown("""
-    <h1 style='text-align: left; color: #543011; font-size: 24px;'></h1>
+    <h1 style='text-align: left; color: #0f6f31; font-size: 24px;'></h1>
     """, unsafe_allow_html=True)
     
 tab1, tab2 = st.tabs(["Registro de Novedades 📂", "Funcionarios 👔"])
