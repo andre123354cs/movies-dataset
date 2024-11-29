@@ -143,7 +143,7 @@ with tab3:
         funcionarios = Global['fecha'].unique()
     
         # Crear un selectbox para elegir el funcionario
-        funcionario_seleccionado = st.selectbox("Seleccionar funcionario", funcionarios)
+        funcionario_seleccionado = st.multiselect("Seleccionar funcionario", funcionarios)
     
         st.dataframe(Global)
         
