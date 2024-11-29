@@ -145,7 +145,7 @@ with tab3:
         Fechas = Global['mes'].unique()
 
         # Crear un selectbox para elegir el funcionario
-        funcionario_seleccionado = st.multiselect("Seleccionar fechas", meses_unicos)
+        funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
     
         st.dataframe(Global)
         
