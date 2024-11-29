@@ -140,7 +140,9 @@ with tab3:
         conn.close()
         
         st.dataframe(Global)
-    
+        
+    mostrar_datos_Total()
+
 
 
 # Ejecutar la aplicación
