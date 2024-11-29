@@ -14,3 +14,29 @@ def load_data():
 df = load_data()
 
 st.dataframe(df)
+
+
+
+# Título del formulario
+st.title("Formulario de Novedades")
+
+# Obtener la fecha actual
+hoy = date.today()
+
+# Crear los campos del formulario
+nombre = st.text_input("Nombre del funcionario")
+funcion = st.text_input("Función")
+tipo_novedad = st.selectbox("Tipo de novedad", ["Ausencia", "Permiso", "Otro"])
+observacion = st.text_area("Observaciones")
+
+# Mostrar la fecha en un campo de texto no editable
+st.write("Fecha:", hoy)
+
+# Botón para enviar el formulario (por ahora, simplemente mostrará los datos ingresados)
+if st.button("Enviar"):
+    st.write("Datos ingresados:")
+    st.write(f"Fecha: {hoy}")
+    st.write(f"Nombre: {nombre}")
+    st.write(f"Función: {funcion}")
+    st.write(f"Tipo de novedad: {tipo_novedad}")
+    st.write(f"Observaciones: {observacion}")
