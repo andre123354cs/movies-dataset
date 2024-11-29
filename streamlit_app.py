@@ -91,7 +91,9 @@ with tab1:
 
 with tab2:
     
-        
+    mostrar_datos()
+
+# Crear la base de datos si no existe
 crear_base_de_datos()
         
 # Ejecutar la aplicación
