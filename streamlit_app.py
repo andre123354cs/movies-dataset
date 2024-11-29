@@ -138,7 +138,14 @@ with tab3:
         conn = sqlite3.connect('novedades.db')
         Global = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
-        
+        df['fecha'] = pd.to_datetime(df['fecha'])
+    
+        # Obtener los nombres de los funcionarios únicos
+        funcionarios = df['fecha'].unique()
+    
+        # Crear un selectbox para elegir el funcionario
+        funcionario_seleccionado = st.selectbox("Seleccionar funcionario", funcionarios)
+    
         st.dataframe(Global)
         
     mostrar_datos_Total()
