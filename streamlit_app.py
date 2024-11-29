@@ -17,10 +17,10 @@ df = load_data()
 
 # Create the form
 with st.form("my_form"):
-    nombre = st.text_input("Nombre")
-    funcion = st.text_input("Función")
-    tipo_novedad = st.selectbox("Tipo de novedad", ["Ausencia", "Permiso", "Otro"])
-    observacion = st.text_area("Observaciones")
+    FECHA = st.text_input("Nombre")
+    NOMBRE FUNCIONARIO = st.text_input("Función")
+    TIPO DE NOVEDAD  = st.selectbox("Tipo de novedad", ["Ausencia", "Permiso", "Otro"])
+    OBSERVACION = st.text_area("Observaciones")
     submitted = st.form_submit_button("Submit")
 
 # If the form is submitted, append the new data to the DataFrame
