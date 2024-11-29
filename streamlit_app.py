@@ -132,7 +132,7 @@ with tab2:
         st.altair_chart(chart, use_container_width=True)
     mostrar_datos()
 
-with tab2:
+with tab3:
 
     def mostrar_datos():
         conn = sqlite3.connect('novedades.db')
