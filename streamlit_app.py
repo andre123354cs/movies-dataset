@@ -146,22 +146,7 @@ with tab2:
 
 
 with tab3:
-        fecha_inicio = st.date_input("Fecha de inicio")
-        fecha_fin = st.date_input("Fecha de fin")
         
-        # Obtener los datos de la base de datos
-        conn = sqlite3.connect('novedades.db')
-        df = pd.read_sql_query("SELECT * FROM novedades", conn)
-        conn.close()
-        
-        # Convertir la columna 'fecha' a tipo datetime
-        df['fecha'] = pd.to_datetime(df['fecha'])
-        
-        # Llamar a la función para filtrar y visualizar
-        filtrar_y_visualizar(df, fecha_inicio, fecha_fin)
-        
-        # Crear la base de datos si no existe
-crear_base_de_datos()
 
 # Ejecutar la aplicación
 if __name__ == "__main__":
