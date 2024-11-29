@@ -101,7 +101,8 @@ with tab2:
     # Botón para mostrar los datos
     if st.button("Mostrar consolidado"):
         mostrar_datos(fecha_inicio, fecha_fin)
-            
+
+    mostrar_datos()
 # Ejecutar la aplicación
 if __name__ == "__main__":
     main()
