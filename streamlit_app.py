@@ -100,12 +100,6 @@ with tab1:
             guardar_novedad(fecha, nombre, novedad, observacion)
             st.success("Novedad guardada correctamente")
 
-    # Mostrar los datos y el gráfico
-    mostrar_datos()
-
-# Crear la base de datos si no existe
-crear_base_de_datos()
-
 with tab2:
     # Selector de fechas
     fecha_inicio = st.date_input("Fecha de inicio")
@@ -114,7 +108,9 @@ with tab2:
     # Botón para mostrar los datos
     if st.button("Mostrar consolidado"):
         mostrar_datos(fecha_inicio, fecha_fin)
-            
+        
+crear_base_de_datos()
+        
 # Ejecutar la aplicación
 if __name__ == "__main__":
     main()
