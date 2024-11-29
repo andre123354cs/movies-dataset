@@ -143,7 +143,7 @@ with tab3:
         Fechas = Global['fecha'].unique()
         funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
 
-        Global = Global[Global['nombre_funcionario'] == funcionario_seleccionado]
+        Global = Global[Global['fecha'] == funcionario_seleccionado]
 
         st.dataframe(Global)
 
