@@ -133,7 +133,9 @@ with tab3:
         conn = sqlite3.connect('novedades.db')
         df1 = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
-        # Filtrar por fechas
+
+        df1['fecha'] = pd.to_datetime(df1['fecha'])
+
         df_filtrado1 = df1[(df1['fecha'] >= fecha_inicio) & (df1['fecha'] <= fecha_fin)]
         
         # Mostrar tabla con los resultados
