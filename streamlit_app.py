@@ -8,7 +8,7 @@ import sqlite3
 import altair as alt
 
 # Show the page title and description.
-st.set_page_config(page_title="Movies dataset", page_icon="🌍")
+st.set_page_config(page_title="RRHH YesBpo", page_icon="🌍")
 st.markdown("""
     <h1 style='text-align: left; color: #008f4c; font-size: 50px;'>🌍 RRHH YesBpo</h1>
     """, unsafe_allow_html=True)
@@ -18,11 +18,11 @@ st.markdown("""
 
 # Crear la base de datos si no existe
 def crear_base_de_datos():
-    conn = sqlite3.connect('novedades.db')
+    conn = sqlite3.connect('novedades1.db')
     cursor = conn.cursor()
 
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS novedades (
+        CREATE TABLE IF NOT EXISTS novedades1 (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             fecha TEXT,
             nombre_funcionario TEXT,
@@ -36,11 +36,11 @@ def crear_base_de_datos():
 
 # Guardar una nueva novedad
 def guardar_novedad(fecha, nombre, novedad, observacion):
-    conn = sqlite3.connect('novedades.db')
+    conn = sqlite3.connect('novedades1.db')
     cursor = conn.cursor()
 
     cursor.execute('''
-        INSERT INTO novedades (fecha, nombre_funcionario, novedad, observacion)
+        INSERT INTO novedades1 (fecha, nombre_funcionario, novedad, observacion)
         VALUES (?, ?, ?, ?)
     ''', (fecha, nombre, novedad, observacion))
 
@@ -49,8 +49,8 @@ def guardar_novedad(fecha, nombre, novedad, observacion):
 
 # Mostrar los datos almacenados y generar un gráfico
 def mostrar_datos():
-    conn = sqlite3.connect('novedades.db')
-    df = pd.read_sql_query("SELECT * FROM novedades", conn)
+    conn = sqlite3.connect('novedades1.db')
+    df = pd.read_sql_query("SELECT * FROM novedades1", conn)
     conn.close()
 
     st.dataframe(df)
@@ -60,13 +60,13 @@ def mostrar_datos():
         x='novedad',
         y='count()'
     ).properties(
-        title='Número de novedades por tipo'
+        title='Número de novedades1 por tipo'
     )
     st.altair_chart(chart, use_container_width=True)
     
 def mostrar_datos_fechas():
-        conn = sqlite3.connect('novedades.db')
-        df = pd.read_sql_query("SELECT * FROM novedades", conn)
+        conn = sqlite3.connect('novedades1.db')
+        df = pd.read_sql_query("SELECT * FROM novedades1", conn)
         conn.close()
 
         st.dataframe(df)
@@ -99,8 +99,8 @@ with tab2:
     
  
     def mostrar_datos():
-        conn = sqlite3.connect('novedades.db')
-        df = pd.read_sql_query("SELECT * FROM novedades", conn)
+        conn = sqlite3.connect('novedades1.db')
+        df = pd.read_sql_query("SELECT * FROM novedades1", conn)
         conn.close()
     
         
@@ -136,8 +136,8 @@ with tab3:
 
     def mostrar_datos_Total():
         try:
-            conn = sqlite3.connect('novedades.db')
-            Global = pd.read_sql_query("SELECT * FROM novedades", conn)
+            conn = sqlite3.connect('novedades1.db')
+            Global = pd.read_sql_query("SELECT * FROM novedades1", conn)
             conn.close()
     
             
