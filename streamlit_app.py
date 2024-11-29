@@ -142,9 +142,7 @@ with tab2:
         )
         st.altair_chart(chart, use_container_width=True)
 
-        mostrar_datos()
-
-
+    mostrar_datos()
 
 with tab3:
 
