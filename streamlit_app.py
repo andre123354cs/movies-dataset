@@ -129,8 +129,7 @@ with tab3:
         conn = sqlite3.connect('novedades.db')
         df = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
-
-        st.dataframe(df)
+        filtrar_y_visualizar()
      
     
 # Ejecutar la aplicación
