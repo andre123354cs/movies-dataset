@@ -129,19 +129,10 @@ with tab2:
 crear_base_de_datos()
 
 with tab3:
-    import pandas as pd
-    import altair as alt
+   
     
     def filtrar_y_visualizar(df, fecha_inicio, fecha_fin):
-      """
-      Filtra un DataFrame de novedades por un rango de fechas y genera una tabla y un gráfico.
-    
-      Args:
-        df: DataFrame con los datos de las novedades.
-        fecha_inicio: Fecha de inicio del período.
-        fecha_fin: Fecha final del período.
-      """
-    
+
       # Filtrar por fechas
       df_filtrado = df[(df['fecha'] >= fecha_inicio) & (df['fecha'] <= fecha_fin)]
     
@@ -161,9 +152,9 @@ with tab3:
           title='Número de novedades por funcionario'
       )
       st.altair_chart(chart, use_container_width=True)
-
     filtrar_y_visualizar()
-crear_base_de_datos()
+    
+
 # Ejecutar la aplicación
 if __name__ == "__main__":
     main()
