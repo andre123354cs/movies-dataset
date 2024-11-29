@@ -146,9 +146,8 @@ with tab2:
 
 with tab3:
     
+filtrar_y_visualizar()
 
-# Crear la base de datos si no existe
-crear_base_de_datos()
  
     
 # Ejecutar la aplicación
