@@ -63,13 +63,16 @@ def mostrar_datos():
 
 # Crear la interfaz de Streamlit
 def main():
-    st.title("Sistema de Registro de Novedades")
+    st.title("Registro de Novedades")
+    st.markdown("""
+    <h1 style='text-align: left; color: #005780; font-size: 24px;'>Registro de Novedades📊</h1>
+    """, unsafe_allow_html=True)
 
     # Crear el formulario
     with st.form("my_form"):
         fecha = st.date_input("Fecha")
         nombre = st.text_input("Nombre del funcionario")
-        novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Otro"])
+        novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde","Licencia Luto","Licencia Maternidad","Otro"])
         observacion = st.text_area("Observación")
 
         # Botón para enviar el formulario
