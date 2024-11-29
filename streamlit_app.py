@@ -138,7 +138,6 @@ with tab3:
         conn = sqlite3.connect('novedades.db')
         Global = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
-        df['fecha'] = pd.to_datetime(df['fecha'])
     
         # Obtener los nombres de los funcionarios únicos
         funcionarios = df['fecha'].unique()
