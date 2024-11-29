@@ -70,28 +70,36 @@ def main():
     
 tab1, tab2 = st.tabs(["Registro de Novedades", "Consolidado por Funcionario"])
 
-    with tab1:
-        
-        # Crear el formulario
-        with st.form("my_form"):
-            fecha = st.date_input("Fecha")
-            nombre = st.text_input("Nombre del funcionario")
-            novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde","Licencia Luto","Licencia Maternidad","Otro"])
-            observacion = st.text_area("Observación")
-    
-            # Botón para enviar el formulario
-            submitted = st.form_submit_button("Guardar")
-            if submitted:
-                guardar_novedad(fecha, nombre, novedad, observacion)
-                st.success("Novedad guardada correctamente")
-    
-    with tab2:
-        
-        mostrar_datos()
-    
-    # Crear la base de datos si no existe
-    crear_base_de_datos()
+with tab1:
+
+    # Crear el formulario
+    with st.form("my_form"):
+        fecha = st.date_input("Fecha")
+        nombre = st.text_input("Nombre del funcionario")
+        novedad = st.selectbox("Novedad", ["Ausencia", "Permiso", "Llegada Tarde","Licencia Luto","Licencia Maternidad","Otro"])
+        observacion = st.text_area("Observación")
+
+        # Botón para enviar el formulario
+        submitted = st.form_submit_button("Guardar")
+        if submitted:
+            guardar_novedad(fecha, nombre, novedad, observacion)
+            st.success("Novedad guardada correctamente")
+
+    # Mostrar los datos y el gráfico
+    mostrar_datos()
+
+# Crear la base de datos si no existe
+crear_base_de_datos()
+
+with tab2:
+    # Selector de fechas
+    fecha_inicio = st.date_input("Fecha de inicio")
+    fecha_fin = st.date_input("Fecha de fin")
+
+    # Botón para mostrar los datos
+    if st.button("Mostrar consolidado"):
+        mostrar_datos(fecha_inicio, fecha_fin)
             
-    # Ejecutar la aplicación
-    if __name__ == "__main__":
-        main()
+# Ejecutar la aplicación
+if __name__ == "__main__":
+    main()
