@@ -144,6 +144,12 @@ with tab3:
         funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
 
         
+        df_filtrado = Global[Global['fecha'] == funcionario_seleccionado]
+
+        nivedades = df_filtrado.groupby('nombre_funcionario').size().reset_index(name='Total_Novedades')
+
+        st.write(f"Total de novedades para {funcionario_seleccionado}: {nivedades['Total_Novedades'].iloc[0]}")
+
         
         st.dataframe(Global)
 
