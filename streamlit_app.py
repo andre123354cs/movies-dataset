@@ -142,7 +142,7 @@ with tab3:
         #Global['mes'] = Global['fecha'].dt.month
 
         # Obtener los nombres de los funcionarios únicos
-        Fechas = Global['mes'].unique()
+        Fechas = Global['fecha'].unique()
 
         # Crear un selectbox para elegir el funcionario
         funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
