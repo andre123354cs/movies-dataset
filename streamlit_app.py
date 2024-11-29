@@ -127,7 +127,7 @@ with tab2:
 with tab3:
    
     
-    def filtrar_y_visualizar():
+    def filtrar_y_visualizar(fecha_inicio, fecha_fin):
         conn = sqlite3.connect('novedades.db')
         df1 = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
