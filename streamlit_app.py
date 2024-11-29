@@ -140,7 +140,7 @@ with tab3:
         conn.close()
     
         # Obtener los nombres de los funcionarios únicos
-        funcionarios = df['fecha'].unique()
+        funcionarios = df['nombre_funcionario'].unique()
     
         # Crear un selectbox para elegir el funcionario
         funcionario_seleccionado = st.selectbox("Seleccionar funcionario", funcionarios)
