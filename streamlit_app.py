@@ -15,28 +15,30 @@ df = load_data()
 
 st.dataframe(df)
 
+import streamlit as st
+import pandas as pd
 
+@st.cache_data
+def load_data():
+    df = pd.read_csv("data/Libro1.csv")
+    return df
 
-# Título del formulario
-st.title("Formulario de Novedades")
+df = load_data()
 
-# Obtener la fecha actual
-hoy = date.today()
+# Create the form
+with st.form("my_form"):
+    nombre = st.text_input("Nombre")
+    funcion = st.text_input("Función")
+    tipo_novedad = st.selectbox("Tipo de novedad", ["Ausencia", "Permiso", "Otro"])
+    observacion = st.text_area("Observaciones")
+    submitted = st.form_submit_button("Submit")
 
-# Crear los campos del formulario
-nombre = st.text_input("Nombre del funcionario")
-funcion = st.text_input("Función")
-tipo_novedad = st.selectbox("Tipo de novedad", ["Ausencia", "Permiso", "Otro"])
-observacion = st.text_area("Observaciones")
+# If the form is submitted, append the new data to the DataFrame
+if submitted:
+    new_data = {'Nombre': nombre, 'Función': funcion, 'Tipo de novedad': tipo_novedad, 'Observaciones': observacion}
+    df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
+    df.to_csv("data/Libro1.csv", index=False)
+    st.success("Data saved successfully!")
 
-# Mostrar la fecha en un campo de texto no editable
-st.write("Fecha:", hoy)
-
-# Botón para enviar el formulario (por ahora, simplemente mostrará los datos ingresados)
-if st.button("Enviar"):
-    st.write("Datos ingresados:")
-    st.write(f"Fecha: {hoy}")
-    st.write(f"Nombre: {nombre}")
-    st.write(f"Función: {funcion}")
-    st.write(f"Tipo de novedad: {tipo_novedad}")
-    st.write(f"Observaciones: {observacion}")
+# Display the updated DataFrame
+st.dataframe(df)
