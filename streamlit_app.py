@@ -140,7 +140,7 @@ with tab3:
         conn.close()
 
         
-        Fechas = Global['mes'].unique()
+        Fechas = Global['fecha'].unique()
         funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
         #agrupado = funcionario_seleccionado.groupby(['nombre_funcionario']).size().reset_index(name='conteo')
 
