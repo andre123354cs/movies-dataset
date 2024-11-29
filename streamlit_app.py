@@ -18,8 +18,8 @@ df = load_data()
 # Create the form
 with st.form("my_form"):
     FECHA = st.text_input("Nombre")
-    NOMBRE FUNCIONARIO = st.text_input("Función")
-    TIPO DE NOVEDAD  = st.selectbox("Tipo de novedad", ["Ausencia", "Permiso", "Otro"])
+    NOMBRE_FUNCIONARIO = st.text_input("Función")
+    TIPO_DE_NOVEDAD  = st.selectbox("Tipo de novedad", ["Ausencia", "Permiso", "Otro"])
     OBSERVACION = st.text_area("Observaciones")
     submitted = st.form_submit_button("Submit")
 
