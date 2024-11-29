@@ -124,7 +124,7 @@ with tab2:
     mostrar_datos()
 
 with tab3:
-    def mostrar_datos():
+    def mostrar_datos_fechas():
         conn = sqlite3.connect('novedades.db')
         df = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
@@ -138,7 +138,7 @@ with tab3:
         # Crear un selectbox para elegir el funcionario
         funcionario_seleccionado = st.selectbox("Seleccionar Fechas", Fechas)
     
-   
+   mostrar_datos_fechas()
      
     
 # Ejecutar la aplicación
