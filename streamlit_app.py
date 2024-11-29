@@ -122,8 +122,6 @@ with tab2:
         st.altair_chart(chart, use_container_width=True)
 
 
-    # Mostrar los datos y el gráfico
-    mostrar_datos()
 
 
 with tab3:
