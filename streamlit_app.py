@@ -8,27 +8,48 @@ st.title("🌱 RRHH YesBpo")
 st.write("Transparencia y claridad en cada paso. Conoce el estado de tus solicitudes y mantente informado sobre los procesos de RRHH. ¡Tu tranquilidad es nuestra prioridad!")
 
 
-@st.cache_data
-def load_data():
-    df = pd.read_csv("data/Libro1.csv")
-    return df
+import sqlite3
 
-df = load_data()
+def crear_base_de_datos():
+    conn = sqlite3.connect('novedades.db')
+    cursor = conn.cursor()
 
-# Create the form
-with st.form("my_form"):
-    FECHA = st.text_input("Nombre")
-    NOMBRE_FUNCIONARIO = st.text_input("Función")
-    TIPO_DE_NOVEDAD  = st.selectbox("Tipo de novedad", ["Ausencia", "Permiso", "Otro"])
-    OBSERVACION = st.text_area("Observaciones")
-    submitted = st.form_submit_button("Submit")
+    # Crear la tabla si no existe
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS novedades (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            fecha TEXT,
+            nombre_funcionario TEXT,
+            novedad TEXT,
+            observacion TEXT
+        )
+    ''')
 
-# If the form is submitted, append the new data to the DataFrame
-if submitted:
-    new_data = {'Nombre': nombre, 'Función': funcion, 'Tipo de novedad': tipo_novedad, 'Observaciones': observacion}
-    df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
-    df.to_csv("data/Libro1.csv", index=False)
-    st.success("Data saved successfully!")
+    conn.commit()
+    conn.close()
 
-# Display the updated DataFrame
-st.dataframe(df)
+def guardar_novedad(fecha, nombre, novedad, observacion):
+    conn = sqlite3.connect('novedades.db')
+    cursor = conn.cursor()
+
+    # Insertar los datos en la tabla
+    cursor.execute('''
+        INSERT INTO novedades (fecha, nombre_funcionario, novedad, observacion)
+        VALUES (?, ?, ?, ?)
+    ''', (fecha, nombre, novedad, observacion))
+
+    conn.commit()
+    conn.close()
+
+# Crear la base de datos si no existe
+crear_base_de_datos()
+
+# Ejemplo de uso:
+fecha = "2023-11-24"
+nombre = "Juan Pérez"
+novedad = "Ausencia por enfermedad"
+observacion = "Gripe"
+
+guardar_novedad(fecha, nombre, novedad, observacion)
+
+print("Novedad guardada correctamente")
