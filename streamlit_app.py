@@ -153,7 +153,7 @@ with tab3:
         st.altair_chart(chart, use_container_width=True)
 
 
-fecha_inicio = st.date_input("Fecha de inicio")
+        fecha_inicio = st.date_input("Fecha de inicio")
         fecha_fin = st.date_input("Fecha de fin")
 
         # Obtener los datos de la base de datos
