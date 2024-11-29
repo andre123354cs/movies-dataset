@@ -63,9 +63,8 @@ def mostrar_datos():
 
 # Crear la interfaz de Streamlit
 def main():
-    st.title("Registro de Novedades")
     st.markdown("""
-    <h1 style='text-align: left; color: #005780; font-size: 24px;'>Registro de Novedades📊</h1>
+    <h1 style='text-align: left; color: #005780; font-size: 24px;'>Registro de Novedades 📉</h1>
     """, unsafe_allow_html=True)
 
     # Crear el formulario
