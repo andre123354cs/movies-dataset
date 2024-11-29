@@ -121,10 +121,7 @@ with tab2:
         )
         st.altair_chart(chart, use_container_width=True)
 
-# ... (resto del código)
-    mostrar_datos()
 
-crear_base_de_datos()
 
 
 with tab3:
@@ -161,10 +158,6 @@ with tab3:
       )
       st.altair_chart(chart, use_container_width=True)
 
-# ... (resto del código)
-    mostrar_datos()
-
-crear_base_de_datos()
 
 # Ejecutar la aplicación
 if __name__ == "__main__":
