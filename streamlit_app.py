@@ -139,7 +139,7 @@ with tab3:
         Global = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
         
-        Global['mes'] = Global['fecha'].dt.month
+        #Global['mes'] = Global['fecha'].dt.month
 
         # Obtener los nombres de los funcionarios únicos
         Fechas = Global['mes'].unique()
