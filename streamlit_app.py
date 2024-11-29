@@ -133,12 +133,12 @@ with tab2:
 
 with tab3:
 
-    def mostrar_datos():
+    def mostrar_datos_Total():
         conn = sqlite3.connect('novedades.db')
-        df = pd.read_sql_query("SELECT * FROM novedades", conn)
+        Global = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
     
-        st.dataframe(df)
+        st.dataframe(Global)
     
 
 
