@@ -68,14 +68,14 @@ def mostrar_datos():
     
 # Crear la interfaz de Streamlit
 def main():
-    st.markdown("""
-    <h1 style='text-align: left; color: #543011; font-size: 24px;'>Registro de Novedades 📉</h1>
-    """, unsafe_allow_html=True)
+    
 
 tab1, tab2 = st.tabs(["Registro de Novedades", "Consolidado por Funcionario"])
 
 with tab1:
-
+    st.markdown("""
+    <h1 style='text-align: left; color: #543011; font-size: 24px;'>Registro de Novedades 📉</h1>
+    """, unsafe_allow_html=True)
     # Crear el formulario
     with st.form("my_form"):
         fecha = st.date_input("Fecha")
