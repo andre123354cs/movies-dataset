@@ -98,7 +98,13 @@ with tab1:
 with tab2:
     
  
+    def mostrar_datos():
+        conn = sqlite3.connect('novedades.db')
+        df = pd.read_sql_query("SELECT * FROM novedades", conn)
+        conn.close()
     
+        st.dataframe(df)
+        
         # Convertir la columna 'fecha' a tipo datetime
         df['fecha'] = pd.to_datetime(df['fecha'])
     
