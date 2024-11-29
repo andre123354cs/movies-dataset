@@ -127,19 +127,6 @@ with tab2:
 
 
 with tab3:
-    def mostrar_datos_fechas():
-        conn = sqlite3.connect('novedades.db')
-        df = pd.read_sql_query("SELECT * FROM novedades", conn)
-        conn.close()
-    
-        # Convertir la columna 'fecha' a tipo datetime
-        df['fecha'] = pd.to_datetime(df['fecha'])
-    
-        # Obtener los nombres de los funcionarios únicos
-        Fechas = df['fecha'].unique()
-    
-        # Crear un selectbox para elegir el funcionario
-        funcionario_seleccionado = st.selectbox("Seleccionar Fechas", Fechas)
     
      
     
