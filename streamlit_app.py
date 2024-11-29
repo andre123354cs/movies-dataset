@@ -64,11 +64,28 @@ def mostrar_datos():
     )
     st.altair_chart(chart, use_container_width=True)
 
+def mostrar_datos(fecha_inicio, fecha_fin):
+    # ... (código original)
+
+    # Gráfico de barras por tipo de novedad y funcionario
+    chart = alt.Chart(df).mark_bar().encode(
+        x='nombre_funcionario',
+        y='count()',
+        color='novedad'
+    ).properties(
+        title='Número de novedades por funcionario y tipo'
+    )
+    st.altair_chart(chart, use_container_width=True)
+    
 # Crear la interfaz de Streamlit
 def main():
     st.markdown("""
     <h1 style='text-align: left; color: #543011; font-size: 24px;'>Registro de Novedades 📉</h1>
     """, unsafe_allow_html=True)
+
+tab1, tab2 = st.tabs(["Registro de Novedades", "Consolidado por Funcionario"])
+
+with tab1:
 
     # Crear el formulario
     with st.form("my_form"):
@@ -89,6 +106,15 @@ def main():
 # Crear la base de datos si no existe
 crear_base_de_datos()
 
+with tab2:
+    # Selector de fechas
+    fecha_inicio = st.date_input("Fecha de inicio")
+    fecha_fin = st.date_input("Fecha de fin")
+
+    # Botón para mostrar los datos
+    if st.button("Mostrar consolidado"):
+        mostrar_datos(fecha_inicio, fecha_fin)
+            
 # Ejecutar la aplicación
 if __name__ == "__main__":
     main()
