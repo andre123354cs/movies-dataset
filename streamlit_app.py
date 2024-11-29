@@ -125,7 +125,6 @@ with tab2:
         )
         st.altair_chart(chart, use_container_width=True)
 
-    mostrar_datos()
 
 with tab3:
     def mostrar_datos_fechas():
@@ -142,7 +141,6 @@ with tab3:
         # Crear un selectbox para elegir el funcionario
         funcionario_seleccionado = st.selectbox("Seleccionar Fechas", Fechas)
     
-   mostrar_datos_fechas()
      
     
 # Ejecutar la aplicación
