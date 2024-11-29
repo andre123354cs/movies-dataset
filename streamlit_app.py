@@ -103,6 +103,9 @@ with tab2:
         mostrar_datos(fecha_inicio, fecha_fin)
 
     mostrar_datos()
+
+crear_base_de_datos()
+
 # Ejecutar la aplicación
 if __name__ == "__main__":
     main()
