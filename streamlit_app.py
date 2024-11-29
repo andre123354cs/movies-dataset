@@ -103,7 +103,6 @@ with tab2:
         df = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
     
-        st.dataframe(df)
         
         # Convertir la columna 'fecha' a tipo datetime
         df['fecha'] = pd.to_datetime(df['fecha'])
