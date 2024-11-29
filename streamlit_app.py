@@ -90,7 +90,43 @@ with tab1:
 
 with tab2:
     
+    import altair as alt
+import pandas as pd
+import streamlit as st
+import sqlite3
 
+# ... (resto del código original)
+
+def mostrar_datos():
+    conn = sqlite3.connect('novedades.db')
+    df = pd.read_sql_query("SELECT * FROM novedades", conn)
+    conn.close()
+
+    # Convertir la columna 'fecha' a tipo datetime
+    df['fecha'] = pd.to_datetime(df['fecha'])
+
+    # Obtener los nombres de los funcionarios únicos
+    funcionarios = df['nombre_funcionario'].unique()
+
+    # Crear un selectbox para elegir el funcionario
+    funcionario_seleccionado = st.selectbox("Seleccionar funcionario", funcionarios)
+
+    # Filtrar los datos por el funcionario seleccionado
+    df_filtrado = df[df['nombre_funcionario'] == funcionario_seleccionado]
+
+    # Mostrar los datos filtrados
+    st.dataframe(df_filtrado)
+
+    # Gráfico de barras por tipo de novedad para el funcionario seleccionado
+    chart = alt.Chart(df_filtrado).mark_bar().encode(
+        x='novedad',
+        y='count()'
+    ).properties(
+        title='Número de novedades por tipo para el funcionario seleccionado'
+    )
+    st.altair_chart(chart, use_container_width=True)
+
+# ... (resto del código)
     mostrar_datos()
 
 crear_base_de_datos()
