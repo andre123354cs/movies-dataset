@@ -162,8 +162,8 @@ with tab3:
       )
       st.altair_chart(chart, use_container_width=True)
 
-    filtrar_y_visualizar(conteo_novedades)
-        
+    filtrar_y_visualizar()
+crear_base_de_datos()
 # Ejecutar la aplicación
 if __name__ == "__main__":
     main()
