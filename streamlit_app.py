@@ -90,10 +90,7 @@ with tab1:
 
 with tab2:
     
-    import altair as alt
-import pandas as pd
-import streamlit as st
-import sqlite3
+
 
 # ... (resto del código original)
 
