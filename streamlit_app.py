@@ -140,11 +140,10 @@ with tab3:
         conn.close()
     
         # Obtener los nombres de los funcionarios únicos
-        #funcionarios = Global['fecha'].unique()
-        funcionarios = ['Todos'] + list(Global['fecha'].unique())
+        Fechas = Global['fecha'].unique()
 
         # Crear un selectbox para elegir el funcionario
-        funcionario_seleccionado = st.multiselect("Seleccionar funcionario", funcionarios)
+        funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
     
         st.dataframe(Global)
         
