@@ -87,10 +87,6 @@ with tab1:
             guardar_novedad(fecha, nombre, novedad, observacion)
             st.success("Novedad guardada correctamente")
 
-    # Mostrar los datos y el gráfico
-    mostrar_datos()
-
-
 
 with tab2:
     
