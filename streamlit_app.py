@@ -140,7 +140,7 @@ with tab2:
         conn.close()
     
         st.dataframe(df)
-    
+    mostrar_datos()
 # Ejecutar la aplicación
 if __name__ == "__main__":
     main()
