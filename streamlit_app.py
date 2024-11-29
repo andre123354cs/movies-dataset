@@ -135,17 +135,22 @@ with tab2:
 with tab3:
 
     def mostrar_datos_Total():
-        conn = sqlite3.connect('novedades.db')
-        Global = pd.read_sql_query("SELECT * FROM novedades", conn)
-        conn.close()
-
-        
-        Fechas = Global['fecha'].unique()
-        funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
-
-        Global = Global[Global['fecha'] == funcionario_seleccionado]
-
-        st.dataframe(Global)
+        try:
+            conn = sqlite3.connect('novedades.db')
+            Global = pd.read_sql_query("SELECT * FROM novedades", conn)
+            conn.close()
+    
+            
+            Fechas = Global['fecha'].unique()
+            funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
+    
+            if not funcionario_seleccionado:
+                st.warning("Por favor, seleccione al menos una fecha.")
+            else:
+                Global = Global[Global['fecha'].isin(funcionario_seleccionado)]
+                st.dataframe(Global)
+        except Exception as e:
+            st.error(f"Error al cargar los datos: {e}")
 
         
     mostrar_datos_Total()
