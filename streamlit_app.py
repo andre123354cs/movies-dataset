@@ -126,6 +126,9 @@ with tab2:
 with tab3:
     
     def filtrar_y_visualizar(df, fecha_inicio, fecha_fin):
+        conn = sqlite3.connect('novedades.db')
+        df = pd.read_sql_query("SELECT * FROM novedades", conn)
+        conn.close()
         
         # Filtrar por fechas
         df_filtrado = df[(df['fecha'] >= fecha_inicio) & (df['fecha'] <= fecha_fin)]
