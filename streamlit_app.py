@@ -145,13 +145,7 @@ with tab2:
     mostrar_datos()
 
 with tab3:
-    # Selector de fechas
-    fecha_inicio = st.date_input("Fecha de inicio")
-    fecha_fin = st.date_input("Fecha de fin")
-
-    # Botón para mostrar los datos
-    if st.button("Mostrar consolidado"):
-        mostrar_datos(fecha_inicio, fecha_fin)
+    
 
 # Crear la base de datos si no existe
 crear_base_de_datos()
