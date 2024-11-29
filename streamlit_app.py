@@ -124,12 +124,21 @@ with tab2:
     mostrar_datos()
 
 with tab3:
-    
-    def filtrar_y_visualizar(df, fecha_inicio, fecha_fin):
+    def mostrar_datos():
         conn = sqlite3.connect('novedades.db')
         df = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
-        filtrar_y_visualizar()
+    
+        # Convertir la columna 'fecha' a tipo datetime
+        df['fecha'] = pd.to_datetime(df['fecha'])
+    
+        # Obtener los nombres de los funcionarios únicos
+        Fechas = df['fecha'].unique()
+    
+        # Crear un selectbox para elegir el funcionario
+        funcionario_seleccionado = st.selectbox("Seleccionar Fechas", Fechas)
+    
+   
      
     
 # Ejecutar la aplicación
