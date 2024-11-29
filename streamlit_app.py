@@ -158,7 +158,11 @@ with tab3:
       )
       st.altair_chart(chart, use_container_width=True)
 
+    # Mostrar los datos y el gráfico
+    mostrar_datos()
 
+# Crear la base de datos si no existe
+crear_base_de_datos()
 # Ejecutar la aplicación
 if __name__ == "__main__":
     main()
