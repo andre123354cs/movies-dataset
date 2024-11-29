@@ -138,12 +138,16 @@ with tab3:
         conn = sqlite3.connect('novedades.db')
         Global = pd.read_sql_query("SELECT * FROM novedades", conn)
         conn.close()
-        Global['mes'] = Global['fecha'].dt.month
 
         
         Fechas = Global['mes'].unique()
         funcionario_seleccionado = st.multiselect("Seleccionar fechas", Fechas)
+        agrupado = funcionario_seleccionado.groupby(['nombre_funcionario']).size().reset_index(name='conteo')
+
+        
+        
         st.dataframe(Global)
+
         
     mostrar_datos_Total()
 
