@@ -66,10 +66,8 @@ def mostrar_datos():
 
 
     
-# Crear la interfaz de Streamlit
 def main():
     
-
 tab1, tab2 = st.tabs(["Registro de Novedades", "Consolidado por Funcionario"])
 
 with tab1:
