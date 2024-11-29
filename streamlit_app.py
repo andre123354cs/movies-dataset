@@ -146,7 +146,8 @@ with tab3:
           title='Número de novedades por funcionario'
         )
         st.altair_chart(chart, use_container_width=True)
-        
+
+    filtrar_y_visualizar()
  
     
 # Ejecutar la aplicación
