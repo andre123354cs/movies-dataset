@@ -64,28 +64,7 @@ def mostrar_datos():
     )
     st.altair_chart(chart, use_container_width=True)
     
-def filtrar_y_visualizar(df, fecha_inicio, fecha_fin):
-    
-    # Filtrar por fechas
-    df_filtrado = df[(df['fecha'] >= fecha_inicio) & (df['fecha'] <= fecha_fin)]
-    
-    # Mostrar tabla con los resultados
-    st.dataframe(df_filtrado)
-    
-    # Contar las novedades por funcionario y mostrar en una tabla
-    conteo_novedades = df_filtrado.groupby('nombre_funcionario').size().reset_index(name='Total_Novedades')
-    st.dataframe(conteo_novedades)
-    
-    # Crear gráfico de barras
-    chart = alt.Chart(df_filtrado).mark_bar().encode(
-      x='nombre_funcionario',
-      y='count()',
-      tooltip=['novedad']
-    ).properties(
-      title='Número de novedades por funcionario'
-    )
-    st.altair_chart(chart, use_container_width=True)
-        
+
 def main():
     st.markdown("""
     <h1 style='text-align: left; color: #008f4c; font-size: 24px;'></h1>
@@ -146,8 +125,28 @@ with tab2:
 
 with tab3:
     
-filtrar_y_visualizar()
-
+    def filtrar_y_visualizar(df, fecha_inicio, fecha_fin):
+        
+        # Filtrar por fechas
+        df_filtrado = df[(df['fecha'] >= fecha_inicio) & (df['fecha'] <= fecha_fin)]
+        
+        # Mostrar tabla con los resultados
+        st.dataframe(df_filtrado)
+        
+        # Contar las novedades por funcionario y mostrar en una tabla
+        conteo_novedades = df_filtrado.groupby('nombre_funcionario').size().reset_index(name='Total_Novedades')
+        st.dataframe(conteo_novedades)
+        
+        # Crear gráfico de barras
+        chart = alt.Chart(df_filtrado).mark_bar().encode(
+          x='nombre_funcionario',
+          y='count()',
+          tooltip=['novedad']
+        ).properties(
+          title='Número de novedades por funcionario'
+        )
+        st.altair_chart(chart, use_container_width=True)
+        
  
     
 # Ejecutar la aplicación
