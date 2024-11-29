@@ -130,7 +130,7 @@ with tab2:
             title='Novedades Del Funcionario'
         )
         st.altair_chart(chart, use_container_width=True)
-
+    mostrar_datos()
 
     
      
