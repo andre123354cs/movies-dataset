@@ -139,7 +139,6 @@ def crear_tabla_novedades():
     ''')
 
     conn.commit()
-    conn.close()
 
 # Llama a la función para crear la tabla antes de intentar seleccionar datos
 
@@ -171,6 +170,7 @@ class NovedadesDB:
 
     def cerrar_conexion(self):
         self.conn.close()
+
 
 # Crear una instancia de la clase NovedadesDB
 
