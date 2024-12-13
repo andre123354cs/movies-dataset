@@ -22,14 +22,16 @@ st.markdown("""
     <h1 style='text-align: left; color: #0f0a68; font-size: 15px;'>El lugar perfecto para relajarte, disfrutar de buena compañía y bebidas excepcionales. Nuestra plataforma te ofrece un seguimiento detallado de tus consumos y una experiencia personalizada. ¡Salud y disfrute en cada sorbo!</h1>
     """, unsafe_allow_html=True)
 
-# Crear pestañas
-tab1, tab2 = st.tabs(["Consumo por Mesas", "Inventarios"])
 def clear_cache():
     st.cache_data.clear()
 
 if st.button('Actualizar'):
     clear_cache()
     st.toast(f"✅ ¡Actualización en curso! 🎉")
+    
+# Crear pestañas
+tab1, tab2 = st.tabs(["Consumo por Mesas", "Inventarios"])
+
     
 with tab1:
     # Cargar los datos desde Google Sheets
