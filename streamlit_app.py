@@ -32,12 +32,13 @@ gsheetid = '1m-4aJw3oNEFG2h0FQH5cwU-Tvg2skKfGD_3kpdLTdkk'
 sheetod = '1451551704'
 url = f'https://docs.google.com/spreadsheets/d/{gsheetid}/export?format=csv&gid={sheetod}&format'
 
+dfDatos = pd.read_csv(url)
+
 Inventario = '1m-4aJw3oNEFG2h0FQH5cwU-Tvg2skKfGD_3kpdLTdkk'
 Inventar = '1949382089'
 Inventarios = f'https://docs.google.com/spreadsheets/d/{Inventario}/export?format=csv&gid={Inventar}&format'
 
-
-dfDatos = pd.read_csv(url)
+Inventarios = pd.read_csv(Inventarios)
 
 # Añadir filtro por la columna 'Estado'
 estados = dfDatos['Estado'].unique().tolist()
