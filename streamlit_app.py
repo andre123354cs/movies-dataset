@@ -18,9 +18,6 @@ st.markdown("""
   </div>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-    <h1 style='text-align: left; color: #0f0a68; font-size: 15px;'>El lugar perfecto para relajarte, disfrutar de buena compañía y bebidas excepcionales. Nuestra plataforma te ofrece un seguimiento detallado de tus consumos y una experiencia personalizada. ¡Salud y disfrute en cada sorbo!</h1>
-    """, unsafe_allow_html=True)
 
 def clear_cache():
     st.cache_data.clear()
