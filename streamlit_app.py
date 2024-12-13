@@ -42,7 +42,7 @@ st.dataframe(dfDatos)
 df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 'sum'}).reset_index()
 
 # Crear el degradado de colores desde rojo a verde
-colores = px.colors.sequential.RdYlGn[::-1]  # Degradado de rojo a verde
+colores = px.colors.sequential.RdYlGn
 
 # Crear la gráfica de barras
 fig = px.bar(df_agrupado, x='Mesas', y='Cantidad', text='Cantidad',
@@ -55,7 +55,7 @@ for i, row in df_agrupado.iterrows():
     fig.add_annotation(
         x=row['Mesas'], 
         y=row['Cantidad'] + (max(df_agrupado['Cantidad']) * 0.05),  # Añadir un pequeño desplazamiento
-        text=f"Valor Total: {row['Valor Total']}",
+        text=f"Cantidad: {row['Cantidad']}<br>Valor Total: {row['Valor Total']}",
         showarrow=False,
         yshift=10
     )
