@@ -1,4 +1,4 @@
 streamlit
 pyrebase4
 plotly.express
-plotly.express as px
+
