@@ -16,10 +16,23 @@ if st.button('Actualizar'):
     clear_cache()
     st.toast(f"✅ ¡Actualización en curso! 🎉")
 
+# Establecer la imagen de fondo
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://img.freepik.com/fotos-premium/barra-bar-luces-fondo_895799-2082.jpg?w=360");
+        background-size: cover;
+        background-position: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Poner la nueva imagen a lo ancho con el título en el centro y una frase debajo, manteniendo el fondo
 st.markdown("""
     <div style="position: relative; text-align: center; color: white;">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/029/267/312/small_2x/wooden-table-blurred-bokeh-background-background-neon-light-night-view-close-up-the-general-background-of-the-interior-a-dark-background-ai-generated-photo.jpg" alt="Bar & Grill" style="width: 100%; height: auto;">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
             <h1 style='color: white; font-size: 40px;'>Bar & Grill</h1>
             <p style='color: white; font-size: 20px;'>El lugar perfecto para relajarte, disfrutar de buena compañía y bebidas excepcionales. ¡Salud y disfrute en cada sorbo!</p>
