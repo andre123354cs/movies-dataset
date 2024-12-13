@@ -55,7 +55,7 @@ for i, row in df_agrupado.iterrows():
     fig.add_annotation(
         x=row['Mesas'], 
         y=row['Cantidad'], 
-        text=f"Suma Cantidad: {row['Cantidad']}<br>Valor Total: {row['Valor Total']}",
+        text=f"Cantidad: {row['Cantidad']}<br>Valor: {row['Valor Total']}",
         showarrow=False,
         yshift=10
     )
