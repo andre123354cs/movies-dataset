@@ -1,4 +1,4 @@
-import streamlit as st
+ximport streamlit as st
 import pandas as pd
 import plotly.express as px
 
@@ -43,7 +43,7 @@ colores = px.colors.sequential.YlOrRd[::-1]  # Invertir la escala de colores
 
 # Crear la gráfica de barras
 fig = px.bar(df_agrupado, x='Mesas', y='Cantidad', text='Cantidad',
-             labels={'Cantidad': 'Suma de la Cantidad', 'Mesas': 'Mesa'},
+             labels={ 'Mesas': 'Mesa'},
              title='Consumo por Mesas',
              color='Cantidad', color_continuous_scale=colores)
 
