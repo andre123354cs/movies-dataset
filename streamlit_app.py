@@ -11,7 +11,7 @@ st.set_page_config(
 
 st.markdown("""
   <div style="display: flex; justify-content: Center; align-items: Center;">
-    <img src="https://cdn-icons-png.flaticon.com/128/2118/2118460.png" alt="Bar & Grill MetaData Logo" width="100" height="100">
+    <img src="https://cdn-icons-png.flaticon.com/128/5589/5589362.png" alt="Bar & Grill MetaData Logo" width="100" height="100">
     <h1 style='color: #0f0a68; font-size: 29px;'> Bar & Grill MetaData</h1>
   </div>
 """, unsafe_allow_html=True)
