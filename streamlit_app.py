@@ -35,8 +35,6 @@ estado_seleccionado = st.selectbox('Selecciona el estado', ['Todos'] + estados)
 if estado_seleccionado != 'Todos':
     dfDatos = dfDatos[dfDatos['Estado'] == estado_seleccionado]
 
-# Mostrar el DataFrame en Streamlit
-st.dataframe(dfDatos)
 
 # Agrupar los datos por 'Mesas' y calcular la suma de 'Cantidad' y 'Valor Total'
 df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 'sum'}).reset_index()
