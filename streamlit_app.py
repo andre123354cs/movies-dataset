@@ -38,23 +38,26 @@ if estado_seleccionado != 'Todos':
 # Mostrar el DataFrame en Streamlit
 st.dataframe(dfDatos)
 
-# Calcular la suma total de 'Cantidad' y 'Valor Total'
-total_cantidad = dfDatos['Cantidad'].sum()
-total_valor = dfDatos['Valor Total'].sum()
-
-# Crear un DataFrame para la gráfica
-df_totales = pd.DataFrame({
-    'Indicador': ['Cantidad', 'Valor Total'],
-    'Total': [total_cantidad, total_valor]
-})
+# Agrupar los datos por 'Mesas' y calcular la suma de 'Cantidad' y 'Valor Total'
+df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 'sum'}).reset_index()
 
 # Crear la gráfica de barras
-fig = px.bar(df_totales, x='Indicador', y='Total', text='Total',
-             labels={'Total': 'Suma Total', 'Indicador': 'Indicador'},
-             title='Suma Total de Cantidad y Valor')
+fig = px.bar(df_agrupado, x='Mesas', y='Cantidad', text='Cantidad',
+             labels={'Cantidad': 'Suma de la Cantidad', 'Mesas': 'Mesa'},
+             title='Consumo por Mesas')
+
+# Añadir etiquetas personalizadas para la suma del Valor Total
+for i, row in df_agrupado.iterrows():
+    fig.add_annotation(
+        x=row['Mesas'], 
+        y=row['Cantidad'], 
+        text=f"Valor Total: {row['Valor Total']}",
+        showarrow=False,
+        yshift=10
+    )
 
 # Mostrar las etiquetas en las barras
-fig.update_traces(texttemplate='%{text:.2s}', textposition='outside')
+fig.update_traces(texttemplate='%{text}', textposition='outside')
 
 # Mostrar la gráfica en Streamlit
 st.plotly_chart(fig)
