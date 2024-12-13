@@ -8,7 +8,13 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-
+def clear_cache():
+        st.cache_data.clear()  # Limpiar el caché de los datos
+    # Botón para ejecutar la limpieza del caché
+    if st.button('Actualizar'):
+        clear_cache()
+        st.toast(f"✅ ¡Actualización en curso! 🎉")
+        
 st.markdown("""
   <div style="display: flex; justify-content: Center; align-items: Center;">
     <img src="https://cdn-icons-png.flaticon.com/128/5589/5589362.png" alt="Bar & Grill MetaData Logo" width="100" height="100">
