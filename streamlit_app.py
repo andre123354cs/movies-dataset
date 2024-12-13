@@ -43,7 +43,7 @@ colores = px.colors.sequential.YlOrRd[::-1]  # Invertir la escala de colores
 
 # Crear la gráfica de barras
 fig = px.bar(df_agrupado, x='Mesas', y='Cantidad',
-             title='Consumo por Mesas',
+             title='Consumo por Mesas',, text_auto=False,
              color='Cantidad', color_continuous_scale=colores)
 
 # Añadir etiquetas personalizadas para la suma del Valor Total
