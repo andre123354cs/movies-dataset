@@ -57,7 +57,7 @@ for i, row in df_agrupado.iterrows():
     )
 
 # Mostrar las etiquetas en las barras
-fig.update_traces(texttemplate='%{text}', textposition='outside')
+fig.update_traces(textposition='outside')
 
 # Mostrar la gráfica en Streamlit
 st.plotly_chart(fig)
