@@ -16,12 +16,14 @@ if st.button('Actualizar'):
     clear_cache()
     st.toast(f"✅ ¡Actualización en curso! 🎉")
 
-# Poner la nueva imagen a lo ancho con el título debajo
+# Poner la nueva imagen a lo ancho con el título en el centro y en color blanco
 st.markdown("""
-    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <div style="position: relative; text-align: center; color: white;">
         <img src="https://static.vecteezy.com/system/resources/thumbnails/029/267/312/small_2x/wooden-table-blurred-bokeh-background-background-neon-light-night-view-close-up-the-general-background-of-the-interior-a-dark-background-ai-generated-photo.jpg" alt="Bar & Grill" style="width: 100%; height: auto;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <h1 style='color: white; font-size: 40px;'>Bar & Grill</h1>
+        </div>
     </div>
-    <h1 style='text-align: center; color: #0f0a68; font-size: 29px;'> Bar & Grill </h1>
 """, unsafe_allow_html=True)
 
 # Crear pestañas
