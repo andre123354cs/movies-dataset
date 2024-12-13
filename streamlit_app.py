@@ -9,12 +9,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-def clear_cache():
-    st.cache_data.clear()
 
-if st.button('Actualizar'):
-    clear_cache()
-    st.toast(f"✅ ¡Actualización en curso! 🎉")
 
 st.markdown("""
   <div style="display: flex; justify-content: Center; align-items: Center;">
@@ -29,7 +24,13 @@ st.markdown("""
 
 # Crear pestañas
 tab1, tab2 = st.tabs(["Consumo por Mesas", "Inventarios"])
+def clear_cache():
+    st.cache_data.clear()
 
+if st.button('Actualizar'):
+    clear_cache()
+    st.toast(f"✅ ¡Actualización en curso! 🎉")
+    
 with tab1:
     # Cargar los datos desde Google Sheets
     gsheetid = '1m-4aJw3oNEFG2h0FQH5cwU-Tvg2skKfGD_3kpdLTdkk'
