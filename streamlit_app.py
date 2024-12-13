@@ -16,14 +16,20 @@ if st.button('Actualizar'):
     clear_cache()
     st.toast(f"✅ ¡Actualización en curso! 🎉")
 
-# Establecer la imagen de fondo
+# Establecer la nueva imagen de fondo y cambiar los estilos de los títulos a blanco
 st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://img.freepik.com/fotos-premium/barra-bar-luces-fondo_895799-2082.jpg?w=360");
+        background-image: url("https://static.vecteezy.com/system/resources/previews/046/860/844/non_2x/wooden-table-top-at-the-bar-free-photo.jpeg");
         background-size: cover;
         background-position: center;
+    }
+    .stTabs [data-baseweb="tab"] {
+        color: white !important;
+    }
+    .stSelectbox label {
+        color: white !important;
     }
     </style>
     """,
