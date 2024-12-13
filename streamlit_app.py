@@ -42,7 +42,7 @@ df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 's
 colores = px.colors.sequential.YlOrRd[::-1]  # Invertir la escala de colores
 
 # Crear la gráfica de barras
-fig = px.bar(df_agrupado, x='Mesas', y='Cantidad', text='Cantidad',
+fig = px.bar(df_agrupado, x='Mesas', y='Cantidad',
              labels={ 'Mesas': 'Mesa'},
              title='Consumo por Mesas',
              color='Cantidad', color_continuous_scale=colores)
