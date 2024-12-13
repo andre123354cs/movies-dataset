@@ -9,27 +9,24 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-
-
-st.markdown("""
-  <div style="display: flex; justify-content: Center; align-items: Center;">
-    <img src="https://cdn-icons-png.flaticon.com/128/5589/5589362.png" alt="Bar & Grill Logo" width="100" height="100">
-    <h1 style='color: #0f0a68; font-size: 29px;'> Bar & Grill MetaData</h1>
-  </div>
-""", unsafe_allow_html=True)
-
-
 def clear_cache():
     st.cache_data.clear()
 
 if st.button('Actualizar'):
     clear_cache()
     st.toast(f"✅ ¡Actualización en curso! 🎉")
-    
+
+# Poner la nueva imagen a lo ancho con el título debajo
+st.markdown("""
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/029/267/312/small_2x/wooden-table-blurred-bokeh-background-background-neon-light-night-view-close-up-the-general-background-of-the-interior-a-dark-background-ai-generated-photo.jpg" alt="Bar & Grill" style="width: 100%; height: auto;">
+    </div>
+    <h1 style='text-align: center; color: #0f0a68; font-size: 29px;'> Bar & Grill </h1>
+""", unsafe_allow_html=True)
+
 # Crear pestañas
 tab1, tab2 = st.tabs(["Consumo por Mesas", "Inventarios"])
 
-    
 with tab1:
     # Cargar los datos desde Google Sheets
     gsheetid = '1m-4aJw3oNEFG2h0FQH5cwU-Tvg2skKfGD_3kpdLTdkk'
