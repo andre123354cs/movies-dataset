@@ -88,7 +88,7 @@ with tab2:
     df_inventarios_agrupado = Inventarios.groupby('Referencia').agg({'Stock Real': 'sum'}).reset_index()
 
     fig2 = px.bar(df_inventarios_agrupado, x='Referencia', y='Stock Real', text='Stock Real',
-                  title='Inventario por Producto', color='Producto')
+                  title='Inventario por Producto', color='Referencia')
 
     # Mostrar las etiquetas en las barras
     fig2.update_traces(texttemplate='%{text}', textposition='outside')
