@@ -38,13 +38,23 @@ if estado_seleccionado != 'Todos':
 # Mostrar el DataFrame en Streamlit
 st.dataframe(dfDatos)
 
-# Agrupar los datos por 'Mesas' y calcular la suma de 'Cantidad' y 'Valor Total'
-df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 'sum'}).reset_index()
+# Calcular la suma total de 'Cantidad' y 'Valor Total'
+total_cantidad = dfDatos['Cantidad'].sum()
+total_valor = dfDatos['Valor Total'].sum()
+
+# Crear un DataFrame para la gráfica
+df_totales = pd.DataFrame({
+    'Indicador': ['Cantidad', 'Valor Total'],
+    'Total': [total_cantidad, total_valor]
+})
 
 # Crear la gráfica de barras
-fig = px.bar(df_agrupado, x='Mesas', y=['Cantidad', 'Valor Total'], barmode='group', 
-             labels={'value': 'Suma', 'variable': 'Indicador', 'Mesas': 'Mesa'},
-             title='Consumo por Mesas')
+fig = px.bar(df_totales, x='Indicador', y='Total', text='Total',
+             labels={'Total': 'Suma Total', 'Indicador': 'Indicador'},
+             title='Suma Total de Cantidad y Valor')
+
+# Mostrar las etiquetas en las barras
+fig.update_traces(texttemplate='%{text:.2s}', textposition='outside')
 
 # Mostrar la gráfica en Streamlit
 st.plotly_chart(fig)
