@@ -35,21 +35,27 @@ estado_seleccionado = st.selectbox('Selecciona el estado', ['Todos'] + estados)
 if estado_seleccionado != 'Todos':
     dfDatos = dfDatos[dfDatos['Estado'] == estado_seleccionado]
 
+# Mostrar el DataFrame en Streamlit
+st.dataframe(dfDatos)
 
 # Agrupar los datos por 'Mesas' y calcular la suma de 'Cantidad' y 'Valor Total'
 df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 'sum'}).reset_index()
 
+# Crear el degradado de colores desde verde a rojo
+colores = px.colors.sequential.YlGnBu[::-1]  # Invertir la escala de colores
+
 # Crear la gráfica de barras
 fig = px.bar(df_agrupado, x='Mesas', y='Cantidad', text='Cantidad',
              labels={'Cantidad': 'Suma de la Cantidad', 'Mesas': 'Mesa'},
-             title='Consumo por Mesas')
+             title='Consumo por Mesas',
+             color='Cantidad', color_continuous_scale=colores)
 
 # Añadir etiquetas personalizadas para la suma del Valor Total
 for i, row in df_agrupado.iterrows():
     fig.add_annotation(
         x=row['Mesas'], 
         y=row['Cantidad'], 
-        text=f"Valor Total: {row['Valor Total']}",
+        text=f"Suma Cantidad: {row['Cantidad']}<br>Valor Total: {row['Valor Total']}",
         showarrow=False,
         yshift=10
     )
