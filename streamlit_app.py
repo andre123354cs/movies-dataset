@@ -27,50 +27,71 @@ st.markdown("""
     <h1 style='text-align: left; color: #0f0a68; font-size: 15px;'>El lugar perfecto para relajarte, disfrutar de buena compañía y bebidas excepcionales. Nuestra plataforma te ofrece un seguimiento detallado de tus consumos y una experiencia personalizada. ¡Salud y disfrute en cada sorbo!</h1>
     """, unsafe_allow_html=True)
 
-# Cargar los datos desde Google Sheets
-gsheetid = '1m-4aJw3oNEFG2h0FQH5cwU-Tvg2skKfGD_3kpdLTdkk'
-sheetod = '1451551704'
-url = f'https://docs.google.com/spreadsheets/d/{gsheetid}/export?format=csv&gid={sheetod}&format'
+# Crear pestañas
+tab1, tab2 = st.tabs(["Consumo por Mesas", "Inventarios"])
 
-dfDatos = pd.read_csv(url)
+with tab1:
+    # Cargar los datos desde Google Sheets
+    gsheetid = '1m-4aJw3oNEFG2h0FQH5cwU-Tvg2skKfGD_3kpdLTdkk'
+    sheetod = '1451551704'
+    url = f'https://docs.google.com/spreadsheets/d/{gsheetid}/export?format=csv&gid={sheetod}&format'
 
-Inventario = '1m-4aJw3oNEFG2h0FQH5cwU-Tvg2skKfGD_3kpdLTdkk'
-Inventar = '1949382089'
-Inventarios = f'https://docs.google.com/spreadsheets/d/{Inventario}/export?format=csv&gid={Inventar}&format'
+    dfDatos = pd.read_csv(url)
 
-Inventarios = pd.read_csv(Inventarios)
+    # Añadir filtro por la columna 'Estado'
+    estados = dfDatos['Estado'].unique().tolist()
+    estado_seleccionado = st.selectbox('Selecciona el estado', ['Todos'] + estados)
 
-# Añadir filtro por la columna 'Estado'
-estados = dfDatos['Estado'].unique().tolist()
-estado_seleccionado = st.selectbox('Selecciona el estado', ['Todos'] + estados)
+    # Filtrar los datos según el estado seleccionado
+    if estado_seleccionado != 'Todos':
+        dfDatos = dfDatos[dfDatos['Estado'] == estado_seleccionado]
 
-# Filtrar los datos según el estado seleccionado
-if estado_seleccionado != 'Todos':
-    dfDatos = dfDatos[dfDatos['Estado'] == estado_seleccionado]
+    # Agrupar los datos por 'Mesas' y calcular la suma de 'Cantidad' y 'Valor Total'
+    df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 'sum'}).reset_index()
 
-# Agrupar los datos por 'Mesas' y calcular la suma de 'Cantidad' y 'Valor Total'
-df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 'sum'}).reset_index()
+    # Crear el degradado de colores desde verde manzana a rojo
+    colores = px.colors.sequential.YlOrRd[::-1]  # Invertir la escala de colores
 
-# Crear el degradado de colores desde verde manzana a rojo
-colores = px.colors.sequential.YlOrRd[::-1]  # Invertir la escala de colores
+    # Crear la gráfica de barras
+    fig = px.bar(df_agrupado, x='Mesas', y='Cantidad',
+                 title='Consumo por Mesas', text_auto=False,
+                 color='Cantidad', color_continuous_scale=colores)
 
-# Crear la gráfica de barras
-fig = px.bar(df_agrupado, x='Mesas', y='Cantidad',
-             title='Consumo por Mesas', text_auto=False,
-             color='Cantidad', color_continuous_scale=colores)
+    # Añadir etiquetas personalizadas para la suma del Valor Total
+    for i, row in df_agrupado.iterrows():
+        fig.add_annotation(
+            x=row['Mesas'], 
+            y=row['Cantidad'] + (max(df_agrupado['Cantidad']) * 0.05),  # Añadir un pequeño desplazamiento
+            text=f"Cantidad: {row['Cantidad']}<br>Valor Total: {row['Valor Total']}",
+            showarrow=False,
+            yshift=10
+        )
 
-# Añadir etiquetas personalizadas para la suma del Valor Total
-for i, row in df_agrupado.iterrows():
-    fig.add_annotation(
-        x=row['Mesas'], 
-        y=row['Cantidad'] + (max(df_agrupado['Cantidad']) * 0.05),  # Añadir un pequeño desplazamiento
-        text=f"Cantidad: {row['Cantidad']}<br>Valor Total: {row['Valor Total']}",
-        showarrow=False,
-        yshift=10
-    )
+    # Mostrar las etiquetas en las barras
+    fig.update_traces(textposition='outside')
 
-# Mostrar las etiquetas en las barras
-fig.update_traces(textposition='outside')
+    # Mostrar la gráfica en Streamlit
+    st.plotly_chart(fig)
 
-# Mostrar la gráfica en Streamlit
-st.plotly_chart(fig)
+with tab2:
+    # Cargar los datos desde Google Sheets
+    Inventario = '1m-4aJw3oNEFG2h0FQH5cwU-Tvg2skKfGD_3kpdLTdkk'
+    Inventar = '1949382089'
+    Inventarios_url = f'https://docs.google.com/spreadsheets/d/{Inventario}/export?format=csv&gid={Inventar}&format'
+    
+    Inventarios = pd.read_csv(Inventarios_url)
+
+    # Mostrar la tabla de inventarios
+    st.dataframe(Inventarios)
+
+    # Crear la gráfica de barras con la suma de la columna 'Stock Real'
+    df_inventarios_agrupado = Inventarios.groupby('Producto').agg({'Stock Real': 'sum'}).reset_index()
+
+    fig2 = px.bar(df_inventarios_agrupado, x='Producto', y='Stock Real', text='Stock Real',
+                  title='Inventario por Producto')
+
+    # Mostrar las etiquetas en las barras
+    fig2.update_traces(texttemplate='%{text}', textposition='outside')
+
+    # Mostrar la gráfica en Streamlit
+    st.plotly_chart(fig2)
