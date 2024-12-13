@@ -85,9 +85,9 @@ with tab2:
     st.dataframe(Inventarios, use_container_width=True)
 
     # Crear la gráfica de barras con la suma de la columna 'Stock Real' y colores distintos para cada producto
-    df_inventarios_agrupado = Inventarios.groupby('Producto').agg({'Stock Real': 'sum'}).reset_index()
+    df_inventarios_agrupado = Inventarios.groupby('Referencia').agg({'Stock Real': 'sum'}).reset_index()
 
-    fig2 = px.bar(df_inventarios_agrupado, x='Producto', y='Stock Real', text='Stock Real',
+    fig2 = px.bar(df_inventarios_agrupado, x='Referencia', y='Stock Real', text='Stock Real',
                   title='Inventario por Producto', color='Producto')
 
     # Mostrar las etiquetas en las barras
