@@ -10,12 +10,12 @@ st.set_page_config(
 )
 
 def clear_cache():
-    st.cache_data.clear()  
-    
+    st.cache_data.clear()
+
 if st.button('Actualizar'):
     clear_cache()
     st.toast(f"✅ ¡Actualización en curso! 🎉")
-        
+
 st.markdown("""
   <div style="display: flex; justify-content: Center; align-items: Center;">
     <img src="https://cdn-icons-png.flaticon.com/128/5589/5589362.png" alt="Bar & Grill MetaData Logo" width="100" height="100">
@@ -81,8 +81,8 @@ with tab2:
     
     Inventarios = pd.read_csv(Inventarios_url)
 
-    # Mostrar la tabla de inventarios de lado a lado (full-width)
-    st.dataframe(Inventarios, width=1400, height=600)
+    # Mostrar la tabla de inventarios estirada al ancho de la página
+    st.dataframe(Inventarios, use_container_width=True)
 
     # Crear la gráfica de barras con la suma de la columna 'Stock Real' y colores distintos para cada producto
     df_inventarios_agrupado = Inventarios.groupby('Producto').agg({'Stock Real': 'sum'}).reset_index()
