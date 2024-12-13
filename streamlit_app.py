@@ -10,11 +10,11 @@ st.set_page_config(
 )
 
 def clear_cache():
-        st.cache_data.clear()  # Limpiar el caché de los datos
-        # Botón para ejecutar la limpieza del caché
-        if st.button('Actualizar'):
-            clear_cache()
-            st.toast(f"✅ ¡Actualización en curso! 🎉")
+    st.cache_data.clear()  
+    
+if st.button('Actualizar'):
+    clear_cache()
+    st.toast(f"✅ ¡Actualización en curso! 🎉")
         
 st.markdown("""
   <div style="display: flex; justify-content: Center; align-items: Center;">
