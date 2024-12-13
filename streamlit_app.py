@@ -27,23 +27,23 @@ url = f'https://docs.google.com/spreadsheets/d/{gsheetid}/export?format=csv&gid=
 
 dfDatos = pd.read_csv(url)
 
-# Añadir filtro por la columna 'ESTA'
-estados = dfDatos['ESTA'].unique().tolist()
+# Añadir filtro por la columna 'Estado'
+estados = dfDatos['Estado'].unique().tolist()
 estado_seleccionado = st.selectbox('Selecciona el estado', ['Todos'] + estados)
 
 # Filtrar los datos según el estado seleccionado
 if estado_seleccionado != 'Todos':
-    dfDatos = dfDatos[dfDatos['ESTA'] == estado_seleccionado]
+    dfDatos = dfDatos[dfDatos['Estado'] == estado_seleccionado]
 
 # Mostrar el DataFrame en Streamlit
 st.dataframe(dfDatos)
 
-# Agrupar los datos por 'MESA' y calcular la suma de 'CANTIDAD' y 'VALOR'
-df_agrupado = dfDatos.groupby('MESA').agg({'CANTIDAD': 'sum', 'VALOR': 'sum'}).reset_index()
+# Agrupar los datos por 'Mesas' y calcular la suma de 'Cantidad' y 'Valor Total'
+df_agrupado = dfDatos.groupby('Mesas').agg({'Cantidad': 'sum', 'Valor Total': 'sum'}).reset_index()
 
 # Crear la gráfica de barras
-fig = px.bar(df_agrupado, x='MESA', y=['CANTIDAD', 'VALOR'], barmode='group', 
-             labels={'value': 'Suma', 'variable': 'Indicador', 'MESA': 'Mesa'},
+fig = px.bar(df_agrupado, x='Mesas', y=['Cantidad', 'Valor Total'], barmode='group', 
+             labels={'value': 'Suma', 'variable': 'Indicador', 'Mesas': 'Mesa'},
              title='Consumo por Mesas')
 
 # Mostrar la gráfica en Streamlit
